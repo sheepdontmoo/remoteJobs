@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remote Job Boards Database</title>
+    <meta name="description" content="Searchable directory of remote job boards by category, with CSV export. English and Spanish.">
     <style>
         * {
             margin: 0;
@@ -320,7 +321,7 @@
                 categoryStartup: "Startups",
                 categoryTech: "Technology",
                 categorySocialGood: "Social Impact",
-                categoryMainstream: "General",
+                categoryMainstream: "Mainstream",
                 exportText: "Export Excel",
                 totalLabel: "Total",
                 visibleLabel: "Visible",
@@ -341,7 +342,7 @@
                 categoryStartup: "Startups",
                 categoryTech: "Tecnología",
                 categorySocialGood: "Impacto Social",
-                categoryMainstream: "General",
+                categoryMainstream: "Mainstream",
                 exportText: "Exportar Excel",
                 totalLabel: "Total",
                 visibleLabel: "Visibles",
@@ -562,15 +563,6 @@
                 description: {
                     en: "Premium remote job platform with high-quality opportunities.",
                     es: "Plataforma premium de empleos remotos con oportunidades de alta calidad."
-                }
-            },
-            { 
-                name: "Remote Nomad Jobs", 
-                link: "https://remotenomad.jobs", 
-                category: "General", 
-                description: {
-                    en: "Remote jobs specifically designed for the digital nomad lifestyle.",
-                    es: "Empleos remotos específicamente diseñados para el estilo de vida nómada digital."
                 }
             },
             { 
@@ -835,7 +827,7 @@
             },
             { 
                 name: "Communitech Canada", 
-                link: "https://communitech.ca/jobs", 
+                link: "https://communitech.ca", 
                 category: "Tech", 
                 description: {
                     en: "Tech job hub in Canada's technology ecosystem.",
@@ -864,7 +856,7 @@
             },
             { 
                 name: "All Tech Is Human", 
-                link: "https://alltechishuman.org/jobs", 
+                link: "https://alltechishuman.org", 
                 category: "Social Good", 
                 description: {
                     en: "Tech jobs focused on positive human impact and technology ethics.",
@@ -1041,7 +1033,7 @@
             tbody.innerHTML = filteredData.map(job => `
                 <tr>
                     <td><strong>${job.name}</strong></td>
-                    <td><a href="${job.link}" target="_blank" class="link">${job.link} 🔗</a></td>
+                    <td><a href="${job.link}" target="_blank" rel="noopener noreferrer" class="link">${job.link} 🔗</a></td>
                     <td><span class="category ${job.category.toLowerCase().replace(/\s+/g, '')}">${getCategoryTranslation(job.category)}</span></td>
                     <td class="description">${job.description[currentLanguage]}</td>
                 </tr>
@@ -1093,15 +1085,15 @@
             const csvContent = [
                 headers.join(','),
                 ...filteredData.map(job => [
-                    `"${job.name}"`,
+                    `"${job.name.replace(/"/g, '""')}"`,
                     `"${job.link}"`,
-                    `"${getCategoryTranslation(job.category)}"`,
+                    `"${getCategoryTranslation(job.category).replace(/"/g, '""')}"`,
                     `"${job.description[currentLanguage].replace(/"/g, '""')}"`
                 ].join(','))
             ].join('\n');
 
             // Create and download file
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
             link.setAttribute('href', url);

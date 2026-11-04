@@ -1,38 +1,48 @@
-# Remote Job Boards Database
+# 🌐 Remote Job Boards Database
 
-Complete directory of remote job platforms organized by categories.
+Searchable directory of **68 remote job boards**, grouped by category, with CSV export and an English/Spanish interface.
 
-## Description
-
-This web application displays an interactive database of remote job portals, grouped by categories such as General, Specialized, Regional, Startups, Technology, Social Impact, and Mainstream. It allows users to search, filter, and export information in Excel (CSV) format.
+**[→ Live demo](https://alexmorenogc.github.io/remoteJobs/)**
 
 ## Features
 
-- Instant search by name, category, or description.
-- Filter by platform category.
-- Statistics on total and visible portals.
-- Export visible results to Excel (CSV) file.
-- Modern and responsive interface.
+- Instant search by name, category or description.
+- Filter by category: General, Specialized, Regional, Startups, Technology, Social Impact and Mainstream.
+- Counters for total and visible boards.
+- Export the current (filtered) view to CSV, which opens in Excel.
+- Responsive, single-file, no build step and no dependencies.
 
-## Usage
+## Run locally
 
-1. Open the file [`index.html`](index.html) in your browser.
-2. Use the search bar and category filter to explore the platforms.
-3. Click "Export Excel" to download the filtered results.
+Open [`index.html`](index.html) in a browser. That's it.
 
-## Demo
+## Add or fix a platform
 
-You can access a live demo at [alexmorenogc.github.io/remoteJobs/](https://alexmorenogc.github.io/remoteJobs/).
+All data lives in the `jobBoards` array inside `index.html`. Add an entry like this:
 
-## Project Structure
+```js
+{
+    name: "Example Jobs",
+    link: "https://example.com",
+    category: "General", // General | Niche | Regional | Startup | Tech | Social Good | Mainstream
+    description: {
+        en: "Short description in English.",
+        es: "Descripción corta en español."
+    }
+}
+```
 
-- [`index.html`](index.html): Main source code of the web application.
-- [`LICENSE`](LICENSE): GNU GPL v3 License.
+Found a dead link or want a board added? [Open an issue](https://github.com/alexmorenogc/remoteJobs/issues/new/choose) or send a pull request.
+
+## Project structure
+
+- [`index.html`](index.html): the whole app (markup, styles, data and logic).
+- [`LICENSE`](LICENSE): GNU GPL v3.
 
 ## License
 
-This project is under the GNU General Public License v3. See the [`LICENSE`](LICENSE) file for more details.
+GNU General Public License v3. See [`LICENSE`](LICENSE).
 
 ## Author
 
-Alex Moreno using Claude AI (0% human work done) as a proof of concept. Some minor changes done with Copilot.
+Created by Alex Moreno as a proof of concept, built mostly with Claude AI and with minor changes made with Copilot.
