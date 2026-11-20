@@ -1,6 +1,6 @@
 # 🌐 Remote Job Boards Database
 
-Searchable directory of **68 remote job boards**, grouped by category, with CSV export and an English/Spanish interface.
+Searchable directory of **69 remote job boards**, grouped by category, with CSV export and an English/Spanish interface.
 
 **[→ Live demo](https://alexmorenogc.github.io/remoteJobs/)**
 
